@@ -64,25 +64,44 @@ var jsFrameworks = $(".js-frameworks");
 	jsFrameworks.change(function () {
 		if ($(this).prop("checked")) {
 			express.prop("disabled", true);
+      $(".build-tools").prop("disabled", true);
 			express.parent().addClass("disabled");
 			express.parent().append('<span class="unavailable">&nbsp;&nbsp;&nbsp;&nbsp;Unavailable</span>');
 			updateCost(100);
 		} else {
 			express.prop("disabled", false);
+      $(".build-tools").prop("disabled", false);
 			express.parent().removeClass("disabled");
 			express.parent().find('.unavailable').remove();
 			updateCost(-100);
 		}
 	});
+  $(".build-tools").change(function () {
+    if ($(this).prop("checked")) {
+      express.prop("disabled", true);
+      jsFrameworks.prop("disabled", true);
+      express.parent().addClass("disabled");
+      express.parent().append('<span class="unavailable">&nbsp;&nbsp;&nbsp;&nbsp;Unavailable</span>');
+      updateCost(100);
+    } else {
+      express.prop("disabled", false);
+      jsFrameworks.prop("disabled", false);
+      express.parent().removeClass("disabled");
+      express.parent().find('.unavailable').remove();
+      updateCost(-100);
+    }
+  });
 // if jsLibraries is checked then disable node beacuse of same time.
 	jsLibraries.change(function () {
 		if ($(this).prop("checked")) {
 			nodeJS.prop("disabled", true);
+      $(".npm").prop("disabled", true);
 			nodeJS.parent().addClass("disabled");
 			nodeJS.parent().append('<span class="unavailable">&nbsp;&nbsp;&nbsp;&nbsp;Unavailable</span>');
 			updateCost(100);
 		} else {
 			nodeJS.prop("disabled", false);
+      $(".npm").prop("disabled", false);
 			nodeJS.parent().removeClass("disabled");
 			nodeJS.parent().find('.unavailable').remove();
 			updateCost(-100);
@@ -92,11 +111,13 @@ var jsFrameworks = $(".js-frameworks");
 	express.change(function () {
 		if ($(this).prop("checked")) {
 			jsFrameworks.prop("disabled", true);
+      $(".build-tools").prop("disabled", true);
 			jsFrameworks.parent().addClass("disabled");
 			jsFrameworks.parent().append('<span class="unavailable">&nbsp;&nbsp;&nbsp;&nbsp;Unavailable</span>');
 			updateCost(100);
 		} else {
 			jsFrameworks.prop("disabled", false);
+      $(".build-tools").prop("disabled", false);
 			jsFrameworks.parent().removeClass("disabled");
 			jsFrameworks.parent().find('.unavailable').remove();
 			updateCost(-100);
@@ -106,11 +127,13 @@ var jsFrameworks = $(".js-frameworks");
 	nodeJS.change(function () {
 		if ($(this).prop("checked")) {
 			jsLibraries.prop("disabled", true);
+      $(".npm").prop("disabled", true);
 			jsLibraries.parent().addClass("disabled");
 			jsLibraries.parent().append('<span class="unavailable">&nbsp;&nbsp;&nbsp;&nbsp;Unavailable</span>');
 			updateCost(100);
 		} else {
 			jsLibraries.prop("disabled", false);
+      $(".npm").prop("disabled", false);
 			jsLibraries.parent().removeClass("disabled");
 			jsLibraries.parent().find('.unavailable').remove();
 			updateCost(-100);
@@ -127,8 +150,12 @@ var jsFrameworks = $(".js-frameworks");
 // npm is selected 100 will be added.
 	$("input[name='npm']").change(function () {
 		if ($(this).prop("checked")) {
+      jsLibraries.prop("disabled", true);
+      nodeJS.prop("disabled", true);
 			updateCost(100);
 		} else {
+      jsLibraries.prop("disabled", false);
+      nodeJS.prop("disabled", false);
 			updateCost(-100);
 		}
 	});
@@ -199,10 +226,14 @@ $('form').submit(function (e){
       $('#cvv').css('color', 'red');
        $("#cvv").focus();
 
-  } else {
-    //selecting the form tag to let the people submit if no erros.
+   } else if ( $("#other-field") === "" ) {
+     errorMessage = "<h1>please enter your other job</h1>";
+     $('#other-field').css('color', 'red');
+      $("#other-field").focus();
+    } else {
+     //selecting the form tag to let the people submit if no erros.
     $("form").submit();
-  }
+   }
   document.getElementById("error-message").innerHTML = errorMessage
 
 	$('#error-message').show();
