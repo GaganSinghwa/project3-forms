@@ -6,7 +6,7 @@
 	<title>Register for Full Stack Conf</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="css/style.css">
-  <script type="text/javascript" src="js/app.js"></script>
+
 </head>
 <body>
 	<div class="container">
@@ -18,7 +18,7 @@
 
     <form action="index.html" method="post">
 
-      <fieldset>
+      <fieldset class="basicinfo">
         <legend>Basic Info</legend>
 
         <label for="name">Name:</label>
@@ -35,6 +35,7 @@
           <option value="designer">Designer</option>
           <option value="student">Student</option>
           <option value="other">Other</option>
+
         </select>
       </fieldset>
 
@@ -63,25 +64,25 @@
         <div id="colors-js-puns" class="">
           <label for="color">Color:</label>
           <select id="color">
-            <option value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>
-            <option value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option>
-            <option value="gold">Gold (JS Puns shirt only)</option>
-            <option value="tomato">Tomato (I &#9829; JS shirt only)</option>
-            <option value="steelblue">Steel Blue (I &#9829; JS shirt only)</option>
-            <option value="dimgrey">Dim Grey (I &#9829; JS shirt only)</option>
+            <option  value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>
+            <option  value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option>
+            <option  value="gold">Gold (JS Puns shirt only)</option>
+            <option  value="tomato">Tomato (I &#9829; JS shirt only)</option>
+            <option  value="steelblue">Steel Blue (I &#9829; JS shirt only)</option>
+            <option  value="dimgrey">Dim Grey (I &#9829; JS shirt only)</option>
           </select>
         </div>
       </fieldset>
 
       <fieldset class="activities">
         <legend>Register for Activities</legend>
-        <label><input type="checkbox" name="all"> Main Conference — $200</label>
-        <label><input type="checkbox" name="js-frameworks"> JavaScript Frameworks Workshop — Tuesday 9am-12pm, $100</label>
-        <label><input type="checkbox" name="js-libs"> JavaScript Libraries Workshop — Tuesday 1pm-4pm, $100</label>
-        <label><input type="checkbox" name="express"> Express Workshop — Tuesday 9am-12pm, $100</label>
-        <label><input type="checkbox" name="node"> Node.js Workshop — Tuesday 1pm-4pm, $100</label>
-        <label><input type="checkbox" name="build-tools"> Build tools Workshop — Wednesday 9am-12pm, $100</label>
-        <label><input type="checkbox" name="npm"> npm Workshop — Wednesday 1pm-4pm, $100</label>
+        <label><input class="all" type="checkbox" name="all"> Main Conference — $200</label>
+        <label><input class="js-frameworks" type="checkbox" name="js-frameworks"> JavaScript Frameworks Workshop — Tuesday 9am-12pm, $100</label>
+        <label><input class="js-libs" type="checkbox" name="js-libs"> JavaScript Libraries Workshop — Tuesday 1pm-4pm, $100</label>
+        <label><input class="express" type="checkbox" name="express"> Express Workshop — Tuesday 9am-12pm, $100</label>
+        <label><input class="node" type="checkbox" name="node"> Node.js Workshop — Tuesday 1pm-4pm, $100</label>
+        <label><input class="build-tools" type="checkbox" name="build-tools"> Build tools Workshop — Wednesday 9am-12pm, $100</label>
+        <label><input class="npm" type="checkbox" name="npm"> npm Workshop — Wednesday 1pm-4pm, $100</label>
 
       </fieldset>
       <fieldset>
@@ -138,11 +139,11 @@
         </div>
 
         <div>
-        	<p>If you selected the PayPal option we'll take you to Paypal's site to set up your billing information, when you click “Register” below.</p>
+        	<p id="paypal">If you selected the PayPal option we'll take you to Paypal's site to set up your billing information, when you click “Register” below.</p>
         </div>
 
         <div>
-        	<p>If you selected the Bitcoin option we'll take you to the Coinbase site to set up your billing information. Due to the nature of exchanging Bitcoin, all Bitcoin transactions will be final.</p>
+        	<p id="bitcoin">If you selected the Bitcoin option we'll take you to the Coinbase site to set up your billing information. Due to the nature of exchanging Bitcoin, all Bitcoin transactions will be final.</p>
         </div>
 
       </fieldset>
@@ -153,5 +154,6 @@
 
 	</div>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
