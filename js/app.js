@@ -162,39 +162,49 @@ var emailAddress = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a
 var creditCard = /\b\d{4}(| |-)\d{4}\1\d{4}\1\d{4}\b/g;
 var zipCode = /^\d{5}(?:[-\s]\d{4})?$/;
 var errorMessage ="";
-
+//creating p tags with id error-message
 $('form').prepend('<p id="error-message"></p>');
 $('#error-message').hide();
 // dont let them submit the form if there are erros.
 $('form').submit(function (e){
 	e.preventDefault();
-
-function checkError (){
   if($("#name").val() === ""){
-    errorMessage = alert("Name field can't be blank");
-    name.focus();
+    errorMessage = "<h2>Name field can't be blank</h2>";
+    $('.basicinfo').css('color', 'red');
+     $("#name").focus();
   } else if (!emailAddress.test($("#mail").val())) {
     errorMessage ="<h2>Please enter a valid email.</h2>";
-    $("#mail").focus();
-  } else if ($(".activities input:checked").length === 0) {
-      errorMessage = alert("Must select at least one checkbox under the Register for Activities section of the form.");
-      $(".activities").focus();
+      $('.basicinfo').css('color', 'red');
+     $("#mail").focus();
+
+  } else if ($(".activities > label > input:checked").length === 0) {
+      errorMessage = "<h2>Must select at least one checkbox under the Register for Activities section of the form.</h2>";
+      $('.activities').css('color', 'red');
+       $(".activities").focus();
   }else if ($("#payment").val() === "select_method") {
-    errorMessage = alert("<h1>Must select at least one payment method</h1>");
-    $("#payment").focus();
+    errorMessage = "<h1>Must select at least one payment method</h1>";
+    $('#payment').css('color', 'red');
+     $("#payment").focus();
   }else if ($("#payment").val() === "credit card" && !creditCard.test($("#cc-num").val())) {
-    errorMessage = alert("please enter correct credit card info");
-    $("#cc-num").focus();
+    errorMessage = "<h2>please enter correct credit card info</h2>"
+      $('#cc-num').css('color', 'red');
+     $("#cc-num").focus();
   } else if ($("#payment").val() === "credit card" && !zipCode.test($("#zip").val().length < 5)) {
-      errorMessage = alert("please enter correct 5 digit zipCode");
-      $("#zip").focus();
+      $("#zip").css("color", "red");
+      errorMessage = "<h2>please enter correct 5 digit zipCode</h2>"
+       $("#zip").focus();
   }else if ($("#payment").val() === "credit card" && $("#cvv").val().length < 3) {
-      errorMessage = alert("please enter correct 3 digit cvv code");
-      $("#cvv").focus();
+      errorMessage = "<h2>please enter correct 3 digit cvv code</h2>".css("color", "red");
+      console.log(errorMessage);
+      $('#cvv').css('color', 'red');
+       $("#cvv").focus();
+
   } else {
+    //selecting the form tag to let the people submit if no erros.
     $("form").submit();
   }
-  document.getElementById('error-message').innerHTML = errorMessage;
+  document.getElementById("error-message").innerHTML = errorMessage
+
 	$('#error-message').show();
-}
+
 });
