@@ -64,44 +64,30 @@ var jsFrameworks = $(".js-frameworks");
 	jsFrameworks.change(function () {
 		if ($(this).prop("checked")) {
 			express.prop("disabled", true);
-      $(".build-tools").prop("disabled", true);
+
 			express.parent().addClass("disabled");
 			express.parent().append('<span class="unavailable">&nbsp;&nbsp;&nbsp;&nbsp;Unavailable</span>');
 			updateCost(100);
 		} else {
 			express.prop("disabled", false);
-      $(".build-tools").prop("disabled", false);
+
 			express.parent().removeClass("disabled");
 			express.parent().find('.unavailable').remove();
 			updateCost(-100);
 		}
 	});
-  $(".build-tools").change(function () {
-    if ($(this).prop("checked")) {
-      express.prop("disabled", true);
-      jsFrameworks.prop("disabled", true);
-      express.parent().addClass("disabled");
-      express.parent().append('<span class="unavailable">&nbsp;&nbsp;&nbsp;&nbsp;Unavailable</span>');
-      updateCost(100);
-    } else {
-      express.prop("disabled", false);
-      jsFrameworks.prop("disabled", false);
-      express.parent().removeClass("disabled");
-      express.parent().find('.unavailable').remove();
-      updateCost(-100);
-    }
-  });
+
 // if jsLibraries is checked then disable node beacuse of same time.
 	jsLibraries.change(function () {
 		if ($(this).prop("checked")) {
 			nodeJS.prop("disabled", true);
-      $(".npm").prop("disabled", true);
+
 			nodeJS.parent().addClass("disabled");
 			nodeJS.parent().append('<span class="unavailable">&nbsp;&nbsp;&nbsp;&nbsp;Unavailable</span>');
 			updateCost(100);
 		} else {
 			nodeJS.prop("disabled", false);
-      $(".npm").prop("disabled", false);
+
 			nodeJS.parent().removeClass("disabled");
 			nodeJS.parent().find('.unavailable').remove();
 			updateCost(-100);
@@ -111,13 +97,13 @@ var jsFrameworks = $(".js-frameworks");
 	express.change(function () {
 		if ($(this).prop("checked")) {
 			jsFrameworks.prop("disabled", true);
-      $(".build-tools").prop("disabled", true);
+
 			jsFrameworks.parent().addClass("disabled");
 			jsFrameworks.parent().append('<span class="unavailable">&nbsp;&nbsp;&nbsp;&nbsp;Unavailable</span>');
 			updateCost(100);
 		} else {
 			jsFrameworks.prop("disabled", false);
-      $(".build-tools").prop("disabled", false);
+
 			jsFrameworks.parent().removeClass("disabled");
 			jsFrameworks.parent().find('.unavailable').remove();
 			updateCost(-100);
@@ -127,13 +113,13 @@ var jsFrameworks = $(".js-frameworks");
 	nodeJS.change(function () {
 		if ($(this).prop("checked")) {
 			jsLibraries.prop("disabled", true);
-      $(".npm").prop("disabled", true);
+
 			jsLibraries.parent().addClass("disabled");
 			jsLibraries.parent().append('<span class="unavailable">&nbsp;&nbsp;&nbsp;&nbsp;Unavailable</span>');
 			updateCost(100);
 		} else {
 			jsLibraries.prop("disabled", false);
-      $(".npm").prop("disabled", false);
+
 			jsLibraries.parent().removeClass("disabled");
 			jsLibraries.parent().find('.unavailable').remove();
 			updateCost(-100);
@@ -150,12 +136,10 @@ var jsFrameworks = $(".js-frameworks");
 // npm is selected 100 will be added.
 	$("input[name='npm']").change(function () {
 		if ($(this).prop("checked")) {
-      jsLibraries.prop("disabled", true);
-      nodeJS.prop("disabled", true);
+
 			updateCost(100);
 		} else {
-      jsLibraries.prop("disabled", false);
-      nodeJS.prop("disabled", false);
+
 			updateCost(-100);
 		}
 	});
@@ -199,33 +183,38 @@ $('form').submit(function (e){
     errorMessage = "<h2>Name field can't be blank</h2>";
     $('.basicinfo').css('color', 'red');
      $("#name").focus();
+     // if email is not valid.
   } else if (!emailAddress.test($("#mail").val())) {
     errorMessage ="<h2>Please enter a valid email.</h2>";
       $('.basicinfo').css('color', 'red');
      $("#mail").focus();
-
+     // if 0 activites are checked.
   } else if ($(".activities > label > input:checked").length === 0) {
       errorMessage = "<h2>Must select at least one checkbox under the Register for Activities section of the form.</h2>";
       $('.activities').css('color', 'red');
        $(".activities").focus();
+       // if payment is still on select method
   }else if ($("#payment").val() === "select_method") {
     errorMessage = "<h1>Must select at least one payment method</h1>";
     $('#payment').css('color', 'red');
      $("#payment").focus();
+     // if credit card number is not 16 digits
   }else if ($("#payment").val() === "credit card" && !creditCard.test($("#cc-num").val())) {
     errorMessage = "<h2>please enter correct credit card info</h2>"
       $('#cc-num').css('color', 'red');
      $("#cc-num").focus();
+     // if zip code is less than 5 digits
   } else if ($("#payment").val() === "credit card" && !zipCode.test($("#zip").val().length < 5)) {
       $("#zip").css("color", "red");
       errorMessage = "<h2>please enter correct 5 digit zipCode</h2>"
        $("#zip").focus();
+       // if payment credit card and cvv code is less than 3.
   }else if ($("#payment").val() === "credit card" && $("#cvv").val().length < 3) {
       errorMessage = "<h2>please enter correct 3 digit cvv code</h2>".css("color", "red");
       console.log(errorMessage);
       $('#cvv').css('color', 'red');
        $("#cvv").focus();
-
+// if other field input is empty
    } else if ( $("#other-field") === "" ) {
      errorMessage = "<h1>please enter your other job</h1>";
      $('#other-field').css('color', 'red');
